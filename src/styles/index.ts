@@ -10,6 +10,14 @@ const EstiloGlobal = createGlobalStyle`
   }
 `
 
+export const Dados = styled.textarea`
+  font-size: 18px;
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
+  resize: none;
+`
+
 export const Container = styled.div`
   display: grid;
   grid-template-columns: 224px auto;

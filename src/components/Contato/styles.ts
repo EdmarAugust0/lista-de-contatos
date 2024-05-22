@@ -6,17 +6,9 @@ export const Card = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 16px;
   margin-top: 32px;
-  border-radius: 8px;
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
-`
-
-export const Nome = styled.h3`
-  font-size: 18px;
-  font-weight: bold;
-  background-color: ${variaveis.cinzaClaro};
-  border: none;
-  resize: none;
 `
 
 export const GeneroTag = styled.span`
@@ -28,22 +20,6 @@ export const GeneroTag = styled.span`
   font-size: 10px;
   border-radius: 8px;
   width: 50px;
-`
-
-export const Email = styled.h4`
-  font-size: 18px;
-  font-weight: bold;
-  background-color: ${variaveis.cinzaClaro};
-  border: none;
-  resize: none;
-`
-
-export const Tell = styled.h4`
-  font-size: 18px;
-  font-weight: bold;
-  background-color: ${variaveis.cinzaClaro};
-  border: none;
-  resize: none;
 `
 
 export const BarraAcoes = styled.div`

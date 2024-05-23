@@ -1,24 +1,38 @@
-import Tarefa from '../../components/Contato'
+import Contato from '../../components/Contato'
 import { Container } from './styles'
 
-const Contato = [
+import * as enums from '../../utils/enums/Contato'
+
+const contatos = [
   {
     nome: 'Edmar Augusto',
     email: 'edmar.tuti@hotmail.com',
     tell: '(31)98250-8412',
-    genero: 'mulher'
+    genero: enums.Genero.MULHER
   },
   {
     nome: 'Edmar Augusto',
     email: 'edmar.tuti@hotmail.com',
     tell: '(31)98250-8412',
-    genero: 'mulher'
+    genero: enums.Genero.MULHER
   },
   {
     nome: 'Edmar Augusto',
     email: 'edmar.tuti@hotmail.com',
     tell: '(31)98250-8412',
-    genero: 'homem'
+    genero: enums.Genero.HOMEM
+  },
+  {
+    nome: 'Edmar Augusto',
+    email: 'edmar.tuti@hotmail.com',
+    tell: '(31)98250-8412',
+    genero: enums.Genero.MULHER
+  },
+  {
+    nome: 'Edmar Augusto',
+    email: 'edmar.tuti@hotmail.com',
+    tell: '(31)98250-8412',
+    genero: enums.Genero.HOMEM
   }
 ]
 
@@ -29,21 +43,16 @@ const ListaDeContatos = () => (
       &ldquo;Nome&rdquo;
     </p>
     <ul>
-      <li>
-        <Tarefa />
-      </li>
-      <li>
-        <Tarefa />
-      </li>
-      <li>
-        <Tarefa />
-      </li>
-      <li>
-        <Tarefa />
-      </li>
-      <li>
-        <Tarefa />
-      </li>
+      {contatos.map((t) => (
+        <li key={t.nome}>
+          <Contato
+            nome={t.nome}
+            email={t.email}
+            tell={t.tell}
+            genero={t.genero}
+          />
+        </li>
+      ))}
     </ul>
   </Container>
 )

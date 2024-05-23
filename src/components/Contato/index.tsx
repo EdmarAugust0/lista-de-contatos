@@ -1,32 +1,79 @@
-import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react'
 
 import { Dados } from '../../styles'
+import { editar, remover } from '../../store/reducers/contatos'
+import ContatoClass from '../../models/Contato'
 
 import * as S from './styles'
-import * as enums from '../../utils/enums/Contato'
 
-type Props = {
-  nome: string
-  email: string
-  tell: string
-  genero: enums.Genero
-}
+type Props = ContatoClass
 
-const Contato = ({ email, genero, nome, tell }: Props) => {
+const Contato = ({
+  nome: nomeOriginal,
+  email: emailOriginal,
+  tell: tellOriginal,
+  genero,
+  id
+}: Props) => {
+  const dispatch = useDispatch()
   const [estaEditando, setEstaEditando] = useState(false)
+  const [nome, setNome] = useState('')
+  const [email, setEmail] = useState('')
+  const [tell, setTell] = useState('')
+
+  useEffect(() => {
+    if (nomeOriginal.length > 0) {
+      setNome(nomeOriginal)
+    }
+  }, [nomeOriginal])
+
+  useEffect(() => {
+    if (emailOriginal.length > 0) {
+      setEmail(emailOriginal)
+    }
+  }, [emailOriginal])
+
+  useEffect(() => {
+    if (tellOriginal.length > 0) {
+      setTell(tellOriginal)
+    }
+  }, [tellOriginal])
+
+  function cancelaEdicao() {
+    setEstaEditando(false)
+    setNome(nomeOriginal)
+    setEmail(emailOriginal)
+    setTell(tellOriginal)
+  }
 
   return (
     <S.Card>
       <label>Nome:</label>
-      <Dados as="textarea" value={nome}>
+      <Dados
+        disabled={!estaEditando}
+        as="textarea"
+        value={nome}
+        onChange={(evento) => setNome(evento.target.value)}
+      >
         Nome do Contato
       </Dados>
       <label>E-mail:</label>
-      <Dados as="textarea" value={email}>
+      <Dados
+        disabled={!estaEditando}
+        as="textarea"
+        value={email}
+        onChange={(evento) => setEmail(evento.target.value)}
+      >
         {email}
       </Dados>
       <label>Telefone:</label>
-      <Dados as="textarea" value={tell}>
+      <Dados
+        disabled={!estaEditando}
+        as="textarea"
+        value={tell}
+        onChange={(evento) => setTell(evento.target.value)}
+      >
         {tell}
       </Dados>
       <S.GeneroTag as="p" genero={genero}>
@@ -35,11 +82,24 @@ const Contato = ({ email, genero, nome, tell }: Props) => {
       <S.BarraAcoes>
         {estaEditando ? (
           <>
-            <S.BotaoSalvar>Salvar</S.BotaoSalvar>
-            <S.BotaoCancelarExcluir
+            <S.BotaoSalvar
               as="button"
-              onClick={() => setEstaEditando(false)}
+              onClick={() => {
+                dispatch(
+                  editar({
+                    nome,
+                    email,
+                    tell,
+                    genero,
+                    id
+                  })
+                )
+                setEstaEditando(false)
+              }}
             >
+              Salvar
+            </S.BotaoSalvar>
+            <S.BotaoCancelarExcluir as="button" onClick={cancelaEdicao}>
               Cancelar
             </S.BotaoCancelarExcluir>
           </>
@@ -48,7 +108,12 @@ const Contato = ({ email, genero, nome, tell }: Props) => {
             <S.Botao as="button" onClick={() => setEstaEditando(true)}>
               Editar
             </S.Botao>
-            <S.BotaoCancelarExcluir>Excluir</S.BotaoCancelarExcluir>
+            <S.BotaoCancelarExcluir
+              as="button"
+              onClick={() => dispatch(remover(id))}
+            >
+              Excluir
+            </S.BotaoCancelarExcluir>
           </>
         )}
       </S.BarraAcoes>

@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 import variaveis from '../../styles/variaveis'
-import { Props } from '.'
 
-type PropsSemLegendaEContador = Omit<Props, 'contador' | 'legenda'>
+type Props = {
+  ativo: boolean
+}
 
-export const Card = styled.div<PropsSemLegendaEContador>`
+export const Card = styled.div<Props>`
   padding: 8px;
   border: 1px solid ${(props) => (props?.ativo ? '#1e90ff' : '#5e5e5e')};
   background-color: ${variaveis.branco};

@@ -14,28 +14,28 @@ const initialState: ContatosState = {
       nome: 'Edmar Augusto',
       email: 'edmar.tuti@hotmail.com',
       tell: '(31)98250-8412',
-      genero: enums.Genero.MULHER,
+      genero: enums.Genero.HOMEM,
       id: 1
     },
     {
       nome: 'Ana Beatriz',
       email: 'edmar.tuti@hotmail.com',
       tell: '(31)98250-8412',
-      genero: enums.Genero.HOMEM,
+      genero: enums.Genero.MULHER,
       id: 2
     },
     {
       nome: 'Ruan Honorato',
       email: 'edmar.tuti@hotmail.com',
       tell: '(31)98250-8412',
-      genero: enums.Genero.MULHER,
+      genero: enums.Genero.HOMEM,
       id: 3
     },
     {
       nome: 'Victor Campos',
       email: 'edmar.tuti@hotmail.com',
       tell: '(31)98250-8412',
-      genero: enums.Genero.MULHER,
+      genero: enums.Genero.HOMEM,
       id: 4
     },
     {

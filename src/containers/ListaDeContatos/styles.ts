@@ -11,3 +11,9 @@ export const Container = styled.main`
     grid-gap: 16px;
   }
 `
+export const Resultado = styled.p`
+  display: block;
+  margin-top: 40px;
+  font-size: 18px;
+  font-weight: bold;
+`

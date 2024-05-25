@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 
-import { Dados } from '../../styles'
+import { Botao, BotaoSalvar, Dados } from '../../styles'
 import { editar, remover } from '../../store/reducers/contatos'
 import ContatoClass from '../../models/Contato'
 
@@ -49,6 +49,7 @@ const Contato = ({
 
   return (
     <S.Card>
+      {estaEditando && <em>Editando: </em>}
       <label>Nome:</label>
       <Dados
         disabled={!estaEditando}
@@ -82,7 +83,7 @@ const Contato = ({
       <S.BarraAcoes>
         {estaEditando ? (
           <>
-            <S.BotaoSalvar
+            <BotaoSalvar
               as="button"
               onClick={() => {
                 dispatch(
@@ -98,16 +99,16 @@ const Contato = ({
               }}
             >
               Salvar
-            </S.BotaoSalvar>
+            </BotaoSalvar>
             <S.BotaoCancelarExcluir as="button" onClick={cancelaEdicao}>
               Cancelar
             </S.BotaoCancelarExcluir>
           </>
         ) : (
           <>
-            <S.Botao as="button" onClick={() => setEstaEditando(true)}>
+            <Botao as="button" onClick={() => setEstaEditando(true)}>
               Editar
-            </S.Botao>
+            </Botao>
             <S.BotaoCancelarExcluir
               as="button"
               onClick={() => dispatch(remover(id))}
